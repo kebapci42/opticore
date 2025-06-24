@@ -1,0 +1,80 @@
+# OptiCore Enhanced Configuration
+# Performance optimization plugin for Minecraft servers
+
+# General Settings
+show-stats-on-join: true
+debug: false
+cross-platform-mode: false # Auto-detected if Geyser is present
+
+# Optimization Settings
+optimization:
+  merge-items: true
+  smart-chunk-loading: true
+  async-operations: true # Uses async when Paper is detected
+  
+# Performance Thresholds
+thresholds:
+  # TPS below this triggers emergency mode
+  emergency-tps: 17.0
+  # Entity count that triggers optimization
+  entities: 5000
+  # Chunk count that triggers optimization
+  chunks: 500
+  
+# Emergency Mode Settings
+emergency-cooldown: 60000 # Milliseconds between emergency activations
+max-emergency-activations: 3 # Max consecutive emergencies before backing off
+gc-cooldown: 30000 # Minimum time between garbage collections
+
+# Optimization Intervals
+optimization-interval: 2400 # Ticks (2 minutes default)
+metrics-interval: 100 # Ticks for metrics collection
+
+# Memory Management
+memory:
+  gc-threshold: 0.85 # Trigger GC when memory usage exceeds 85%
+  aggressive-gc-threshold: 0.9 # Force GC at 90% usage
+  
+# View Distance Management
+default-view-distance: 10
+emergency-view-distances:
+  critical: 6 # TPS < 10
+  severe: 8   # TPS < 15
+  mild: 10    # TPS < 17
+
+# Entity Culling Settings
+entity-culling:
+  # Item despawn times (in ticks)
+  gentle-threshold: 6000   # 5 minutes
+  moderate-threshold: 2400 # 2 minutes
+  aggressive-threshold: 1200 # 1 minute
+  
+  # Player proximity checks (blocks)
+  gentle-radius: 32
+  moderate-radius: 24
+  aggressive-radius: 0 # Removes regardless of player proximity
+
+# Chunk Management
+chunks:
+  unload-empty-after: 300000 # 5 minutes in milliseconds
+  keep-player-chunks: true
+  minimum-entities-to-keep: 5
+
+# Paper-specific Settings (only used on Paper servers)
+paper:
+  async-chunk-loading: true
+  reduce-simulation-distance: true
+  optimize-entity-ai: true
+
+# Integrations
+integrations:
+  spark-profiler: true # Use Spark for enhanced profiling if available
+  placeholder-api: false # PlaceholderAPI support for stats
+
+# Messages
+messages:
+  prefix: "&b[OptiCore] "
+  emergency-mode: "&cEmergency optimization activated - TPS: {tps}"
+  optimization-complete: "&aOptimization cycle complete"
+  reload-success: "&aConfiguration reloaded successfully!"
+  no-permission: "&cYou don't have permission to use this command!"

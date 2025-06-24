@@ -1,0 +1,57 @@
+name: OptiCore
+version: 2.0.0
+main: com.kebapci42.opticore.OptiCore
+api-version: 1.20
+author: kebapci42
+description: Intelligent performance optimization plugin for Minecraft servers with adaptive algorithms
+website: https://github.com/kebapci42/opticore
+
+# Soft dependencies for enhanced features
+softdepend: [spark, Geyser-Spigot, PlaceholderAPI]
+
+commands:
+  opticore:
+    description: OptiCore main command
+    usage: |
+      /<command> - Show performance stats
+      /<command> analyze - Run detailed performance analysis
+      /<command> optimize - Force optimization cycle
+      /<command> memory - Display memory information
+      /<command> reload - Reload configuration
+    permission: opticore.use
+    aliases: [oc, perf, performance]
+
+permissions:
+  opticore.use:
+    description: Allows use of basic OptiCore commands and view stats
+    default: true
+    
+  opticore.admin:
+    description: Allows access to all OptiCore features
+    default: op
+    children:
+      opticore.use: true
+      opticore.analyze: true
+      opticore.optimize: true
+      opticore.memory: true
+      opticore.reload: true
+      
+  opticore.analyze:
+    description: Allows running performance analysis
+    default: op
+    
+  opticore.optimize:
+    description: Allows forcing optimization cycles
+    default: op
+    
+  opticore.memory:
+    description: Allows viewing detailed memory information
+    default: op
+    
+  opticore.reload:
+    description: Allows reloading the configuration
+    default: op
+    
+  opticore.bypass:
+    description: Bypass optimization effects (useful for debugging)
+    default: false
